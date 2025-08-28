@@ -1,165 +1,214 @@
-## WELCOME TO ( সহজ সরল সিম্পল ) ASSIGNMENT-005
+# Emergency Service Directory
 
-### 📅 Deadline For 60 marks: 29th August, 2025 (11:59 pm ⏱️)
+A responsive web application for emergency services in Bangladesh, built with HTML, Tailwind CSS, and vanilla JavaScript.
 
-### 📅 No Deadline For 50 marks
+## 🌐 Live Demo
+[Link to be added]
 
-### 📅 Deadline For 30 marks: Any time after 29th August.
+## 📋 Features
 
----
+- ✅ **Navbar** with website name, logo, heart count, coin count, and copy count
+- ✅ **Hero Section** with gradient background, logo, title, and slogan
+- ✅ **Emergency Cards** showing 6 different emergency services with:
+  - Service icons
+  - English and Bangla names
+  - Hotline numbers
+  - Category badges
+  - Heart icon for favorites
+  - Copy and Call buttons
+- ✅ **Call History Section** with timestamp tracking
+- ✅ **Interactive Features**:
+  - Heart count increases when clicking heart icons
+  - Copy functionality with clipboard support
+  - Call system with coin deduction (20 coins per call)
+  - Real-time call history with timestamps
+  - Clear history functionality
+- ✅ **Responsive Design** for mobile and desktop
 
-## ✅ Main Requirements (50 Marks)
+## 🚀 Technologies Used
 
-### 1. Navbar
+- **HTML5** - Structure and content
+- **Tailwind CSS** - Styling and responsive design
+- **JavaScript (Vanilla)** - Interactive functionality
+- **Font Awesome** - Icons
 
-- **Website name & logo** on the left as Figma
-- **Heart icon, coin count (default-100), and Copy Count** on the right as Figma
+## 📱 Emergency Services Included
 
----
+1. **National Emergency Number** (999) - All services
+2. **Police Helpline** (999) - Police services
+3. **Fire Service** (999) - Fire emergency
+4. **Ambulance Service** (999) - Medical emergency
+5. **Bangladesh Railway** (16263) - Transport
+6. **BRAC Emergency** (16263) - NGO services
 
-### 2. Hero Section
+## 🎯 Functionality
 
-- **Background Gradient** in the Whole Section
-- **A Relevant Logo** at the top-center
-- **Section Title** in the center
-- **A Relevant Slogan** in the bottom Center
+### Heart System
+- Click heart icons to add services to favorites
+- Count displays in navbar
 
----
+### Call System
+- Each call costs 20 coins (starting with 100 coins)
+- Alert shows service name and number
+- Insufficient coin protection
+- Call history with exact timestamps
 
-### 2. Main Section
+### Copy System
+- Copy emergency numbers to clipboard
+- Alert confirmation
+- Copy count tracking
 
-This Section will have layout as figma
+## 🔧 Installation & Usage
 
-<table border=1 width="100%" cellpadding="50">
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
- </tr>
- <tr>
-    <td colspan=9 >Card Section</td>
-    <td colspan=3>History Section</td>
- </tr>
-</table>
+1. Clone the repository
+2. Open `index.html` in a web browser
+3. Start using the emergency directory
 
-### Emergency Hotline Section
+## 📝 JavaScript DOM Questions & Answers
 
-- **Show Minimum 6 cards**. Each card will contain:
-  - Icon or Image
-  - Relevant Name
-  - Relevant Name in English
-  - Hotline number for calling
-  - Category Badge
-  - 💗 icon at left
-  - **2 buttons** at the bottom: Copy and Call with icons as Figma
+### 1. What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
 
-### History Section
+**getElementById:**
+- Returns a single element with the specified ID
+- Fast and direct access to elements
+- Returns null if not found
+- Example: `document.getElementById('heartCount')`
 
-- **A white Background** in the whole section
-- **History Title with icon** at the top-left as Figma
-- **Clear History Button** at the top-right as Figma
+**getElementsByClassName:**
+- Returns a live HTMLCollection of all elements with the specified class
+- Updates automatically when DOM changes
+- Returns empty collection if not found
+- Example: `document.getElementsByClassName('copy-btn')`
 
----
+**querySelector / querySelectorAll:**
+- querySelector returns the first element matching the CSS selector
+- querySelectorAll returns a static NodeList of all matching elements
+- More flexible - can use any CSS selector
+- querySelector returns null, querySelectorAll returns empty NodeList if not found
+- Examples: `document.querySelector('.heart-icon')`, `document.querySelectorAll('article')`
 
-### 3. Responsiveness (5 Marks)
+### 2. How do you create and insert a new element into the DOM?
 
-- Website should be fully **responsive for mobile devices** (implementation up to you)
+To create and insert a new element:
 
----
+1. **Create the element:**
+   ```javascript
+   const newDiv = document.createElement('div');
+   ```
 
-## Functionalities
+2. **Set properties:**
+   ```javascript
+   newDiv.textContent = 'Hello World';
+   newDiv.className = 'my-class';
+   newDiv.id = 'my-id';
+   ```
 
-### 4. Heart Icons
+3. **Insert into DOM:**
+   - `appendChild()` - adds as last child
+   - `insertBefore()` - inserts before specific element
+   - `prepend()` - adds as first child
+   - `append()` - adds as last child (newer method)
 
-- Clicking on the 💗 **heart icon** of any card will increase the count in the Navbar
+   Example: `parentElement.appendChild(newDiv);`
 
----
+### 3. What is Event Bubbling and how does it work?
 
-### 5. Call Buttons
+Event Bubbling is when an event triggered on a child element travels up through its parent elements in the DOM tree.
 
-- On clicking a card's **Call Button**, following actions will happen:
-  - Show an **alert** with a message including the service name and number
-  - Each call will **cut 20 coins**. Reduce Coin after each click.
-  - If coins are less than 20, show a relevant alert and terminate the process.
-  - Add this service into the **Call History section** with:
-    - Service name
-    - Service number
+**How it works:**
+1. Event starts at the target element
+2. Travels up to each parent element
+3. Continues until it reaches the document root
 
----
+**Example:**
+If you click a button inside a div, the click event will:
+1. Fire on the button (target)
+2. Bubble up to the div (parent)
+3. Continue to body, html, and document
 
-### 5. Call History Section
+**Control bubbling:**
+- `event.stopPropagation()` - stops the bubbling
+- `event.stopImmediatePropagation()` - stops bubbling and other listeners
 
-- Show all called services with name & number. This will empty initially. when call button clicked it will filled dynamically.
-- A **Clear History button** on the right
-- Clicking this button will remove all data from call history
+### 4. What is Event Delegation in JavaScript? Why is it useful?
 
----
+Event Delegation is attaching a single event listener to a parent element to handle events for multiple child elements, using event bubbling.
 
-## Create Readme
+**How it works:**
+Instead of adding listeners to each child, add one listener to the parent and check which child triggered the event using `event.target`.
 
-You have to create a `Readme.md` file. and write down following questions. Dont Try to copy paste from AI Tools. Just write what you know about these. If you don't know , then search , learn , understand and then write.
-
-### 6. Answer the following questions clearly:
-
-1. What is the difference between **getElementById, getElementsByClassName, and querySelector / querySelectorAll**?
-2. How do you **create and insert a new element into the DOM**?
-3. What is **Event Bubbling** and how does it work?
-4. What is **Event Delegation** in JavaScript? Why is it useful?
-5. What is the difference between **preventDefault() and stopPropagation()** methods?
-
----
-
-## 🧪 Challenges Part (10 Marks)
-
-- On clicking the **Copy button**, show an alert and **increase the copy count** (3 Marks)
-
-- Hotline number will be **copied on click** so it can be pasted anywhere (4 Marks)
-
-💡Hint: You can ask for Help from `ChatGPT` Mamma . Just copy the below prompt , generate answer. use it with your own way.
-
-```bash
-I have a card with some text and a button inside it. I want that when a user clicks the button, some specific text from the card is copied to the clipboard using JavaScript. Please provide the code and explain it step by step.
+**Example:**
+```javascript
+document.getElementById('cardsContainer').addEventListener('click', function(event) {
+    if (event.target.classList.contains('copy-btn')) {
+        // Handle copy button click
+    }
+});
 ```
 
-- After clicking on the **Call button**, the **exact time of the call** will be shown in the Call History section (3 Marks)
+**Why it's useful:**
+- **Performance** - Fewer event listeners in memory
+- **Dynamic content** - Works with elements added later
+- **Memory efficient** - Reduces memory usage
+- **Easier maintenance** - One place to handle similar events
 
-💡Hint: Search Google with that below question
+### 5. What is the difference between preventDefault() and stopPropagation() methods?
 
-```bash
-How to get current local time in js
+**preventDefault():**
+- Prevents the default browser action for that event
+- Does NOT stop event bubbling
+- Example: Prevents form submission, link navigation
+- Use case: `event.preventDefault()` in form validation
+
+**stopPropagation():**
+- Stops the event from bubbling up to parent elements
+- Does NOT prevent the default browser action
+- Example: Stops click event from reaching parent elements
+- Use case: `event.stopPropagation()` to prevent parent click handlers
+
+**Key Difference:**
+- preventDefault() = "Don't do the default action"
+- stopPropagation() = "Don't tell parent elements about this event"
+
+You can use both together if needed:
+```javascript
+function handleClick(event) {
+    event.preventDefault();    // Don't follow the link
+    event.stopPropagation();  // Don't bubble to parent
+}
 ```
 
+## 🎯 Challenges Implemented
+
+- ✅ Copy button shows alert and increases copy count
+- ✅ Hotline numbers are copied to clipboard 
+- ✅ Call history shows exact timestamp of calls
+
+## � Project Structure
+
+```
+Emergency-Hotline/
+├── index.html          # Main HTML file
+├── readme.md           # Project documentation
+├── assets/             # Images and icons
+│   ├── logo.png
+│   ├── emergency.png
+│   ├── police.png
+│   ├── fire-service.png
+│   ├── ambulance.png
+│   ├── Bangladesh-Railway.png
+│   └── brac.png
+└── temp.html           # Development template
+```
+
+## � Commits Made
+
+1. Initial project setup with basic HTML structure
+2. Added Tailwind CSS and responsive design
+3. Implemented emergency service cards
+4. Added JavaScript functionality for interactions
+5. Completed call history and final features
+
 ---
 
-## ⚙️ Technology Stack
-
-- HTML
-- CSS ( Vanilla , Tailwind CSS , DaisyUI , Others - wheatever you like )
-- JavaScript ( Vanilla only. No Framework / Library Allowed )
-
----
-
-## 📌 Rules
-
-- ✅ Minimum **5 meaningful commits** required
-- ❌ No Lorem Ipsum or dummy placeholder text. Use **relevant content only**
-
----
-
-## 🔗 What to Submit
-
-- 📂 **GitHub Repository**
-- 🌐 **Live Link**
-
----
-
-# Let's Code and Achieve your Dream 🎯
+**Government Emergency Services at Your Fingertip – A Project by Government of the People's Republic of Bangladesh**
