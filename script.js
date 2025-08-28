@@ -12,19 +12,22 @@ const clickCall = document.querySelectorAll(".clickCall");
 const cardTitle = document.querySelectorAll(".card-title");
 const callNumber = document.querySelectorAll(".call-number");
 const history = document.getElementById('history');
+const historyMobile = document.getElementById('historyMobile');
 
 const clearHistory = document.getElementById('clearHistory');
-
-
+const clearHistoryMobile = document.getElementById('clearHistoryMobile');
 
 clickCall.forEach((call, i) => {
     call.addEventListener('click', () => {
-        if (coin.innerText <20){
+        if (coin.innerText < 20){
             alert("You don't have sufficient Coin")
             return
         }
         alert("📞 Calling : " + cardTitle[i].innerText + " " + callNumber[i].innerText);
-        history.innerHTML +=`
+        
+        // Add to desktop history
+        if (history) {
+            history.innerHTML +=`
                 <div class="flex items-center justify-between bg-gray-100 p-3 rounded-[8px] mb-3">
                     <div>
                         <h1 class="font-semibold text-xl">${cardTitle[i].innerText}</h1>
@@ -32,16 +35,38 @@ clickCall.forEach((call, i) => {
                     </div>
                     <p class="text-gray-800">${new Date().toLocaleTimeString()}</p>
                 </div>`
+        }
+        
+        // Add to mobile history
+        if (historyMobile) {
+            historyMobile.innerHTML +=`
+                <div class="flex items-center justify-between bg-gray-100 p-2 rounded-[8px] mb-2">
+                    <div>
+                        <h1 class="font-semibold text-sm">${cardTitle[i].innerText}</h1>
+                        <p class="text-sm text-gray-500">${callNumber[i].innerText}</p>
+                    </div>
+                    <p class="text-gray-800 text-xs">${new Date().toLocaleTimeString()}</p>
+                </div>`
+        }
+        
         coin.innerText = coin.innerText - 20;
         return coin
-        
     });
 });
 
+// Clear desktop history
+if (clearHistory) {
+    clearHistory.addEventListener('click', () => {
+        if (history) history.innerHTML = '';
+    });
+}
 
-clearHistory.addEventListener('click', () => {
-    history.innerHTML = '';
-});
+// Clear mobile history
+if (clearHistoryMobile) {
+    clearHistoryMobile.addEventListener('click', () => {
+        if (historyMobile) historyMobile.innerHTML = '';
+    });
+}
 
 
 const copycount = document.getElementById("copycount");
